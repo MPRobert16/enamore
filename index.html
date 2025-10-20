@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cómo me enamoré de pechocha 💖</title>
+  <style>
+    /* === Estilos generales === */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #0a0a15;
+      color: #f5f5f5;
+      overflow-x: hidden;
+      position: relative;
+      background: linear-gradient(to bottom, rgba(10,10,20,0.9), rgba(10,10,20,0.9)),
+                  url('imagen.jpg') center/cover fixed;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 2.5em;
+      color: #ff4da6;
+      text-shadow: 0 0 15px #ff4da6;
+    }
+
+    p {
+      max-width: 800px;
+      margin: 80px auto;
+      font-size: 1.2em;
+      line-height: 1.8em;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1.2s ease;
+      background-color: rgba(17, 17, 34, 0.6);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 77, 166, 0.3);
+    }
+
+    p.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === Fondo animado con corazones === */
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: #ff4da6;
+      transform: rotate(45deg);
+      animation: floatUp 8s infinite ease-in;
+      opacity: 0.7;
+      border-radius: 5px;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff4da6;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) rotate(45deg); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    }
+
+    /* === Imagen central opcional === */
+    .imagen-amor {
+      display: block;
+      margin: 40px auto;
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 77, 166, 0.6);
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 1s ease;
+    }
+
+    .imagen-amor.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Cómo me enamoré de pechocha 💖</h1>
+
+  <!-- Imagen central -->
+  <img src="imagen.jpg" alt="Nosotros 💖" class="imagen-amor">
+
+  <!-- Agrega tus párrafos aquí -->
+  <p>Primer párrafo: aquí puedes contar cómo la conociste o qué fue lo primero que te llamó la atención de ella 💕.</p>
+  <p>Segundo párrafo: escribe sobre cómo te fuiste enamorando poco a poco, lo que te hacía sonreír cada vez que hablaban 💫.</p>
+  <p>Tercer párrafo: aquí puedes escribir sobre un momento especial juntos, algo que te hizo sentir que ella era única 💖.</p>
+  <p>Cuarto párrafo: cuenta cómo sientes que su amor te ha cambiado o mejorado tu vida 🌙.</p>
+  <p>Último párrafo: termina con un mensaje desde el corazón para pechocha 💖.</p>
+
+  <script>
+    // Efecto de aparición al hacer scroll
+    const paragraphs = document.querySelectorAll('p');
+    const image = document.querySelector('.imagen-amor');
+
+    function showElements() {
+      const trigger = window.innerHeight * 0.8;
+      paragraphs.forEach(p => {
+        const top = p.getBoundingClientRect().top;
+        if (top < trigger) {
+          p.classList.add('visible');
+        }
+      });
+
+      const imgTop = image.getBoundingClientRect().top;
+      if (imgTop < trigger) image.classList.add('visible');
+    }
+
+    window.addEventListener('scroll', showElements);
+    showElements();
+
+    // Corazones flotando
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    setInterval(createHeart, 400);
+  </script>
+</body>
+</html>
